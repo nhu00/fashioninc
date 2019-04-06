@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stories</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/flaunt.js"></script>
+</head>
+
+<body>
+<!--header-->
+<header>
+	<img src="images/logo.png" alt="fashion inc"/>
+	<!-- Nav -->
+	<nav class="nav" style="float: right">
+    <ul class="nav-list">
+        <li class="nav-item">
+			<a href="index.html">Home</a>	
+        </li>
+        <li class="nav-item">
+            <a href="wheel.html">Spinning Wheel</a>
+        </li>
+        <li class="nav-item">
+            <a href="overview.html">Style History</a>
+        </li>
+        <li class="nav-item">
+            <a href="interview.html">Stories</a>
+			 <ul class="nav-submenu">
+                <li class="nav-submenu-item">
+                    <a href="twins.html">Alina and Adina</a>
+                </li>
+				<li class="nav-submenu-item">
+                    <a href="alvin.html">Alvin</a>
+                </li>
+                <li class="nav-submenu-item">
+                    <a href="carlos.html">Carlos</a>
+                </li>
+            </ul>
+		</li>
+		<li class="nav-item">
+            <a href="about.html">About Us</a>
+        </li>
+    </ul>
+	</nav>
+<!-- /Nav -->
+</header>
+<!--/header-->
+<main>
+	<h1>Stories</h1>
+	<p><center>Here you'll be able to discover and learn more about the different types of style, where the style comes from and the people<br>
+		that use those styles to help them express themselves!</center></p><br>
+
+	<!--slideshow-->
+<div class="slideshow">
+	
+<div class="content">
+	<a href="twins.html">
+		<img class="mySlides w3-animate-fading image" src="images/image1.JPG" alt="twins" style="width: 100%">
+		<img class="mySlides w3-animate-fading image" src="images/image2.JPG" alt="twins" style="width: 100%">
+	<div class="middle">
+    	<div class="text">Click to know their story</div>
+ 	</div>
+	</a>
+</div>
+	
+<div class="content2">
+	<a href="alvin.html">
+		<img class="mySlides w3-animate-fading image" src="images/image3.JPG" alt="alvin" style="width: 100%">
+		<img class="mySlides w3-animate-fading image" src="images/image4.JPG" alt="alvin" style="width: 100%">
+	<div class="middle">
+    	<div class="text">Click to know their story</div>
+ 	</div>
+	</a>
+</div>
+	
+<div class="content3">
+	<a href="carlos.html">
+		<img class="mySlides w3-animate-fading image" src="images/image5.JPG" alt="carlos" style="width: 100%">
+		<img class="mySlides w3-animate-fading image" src="images/image6.JPG" alt="carlos" style="width: 100%">
+	<div class="middle">
+    	<div class="text">Click to know their story</div>
+ 	</div>
+	</a>
+</div>
+
+</div>
+<!--/slideshow-->
+  		
+	
+</main>
+<!--footer-->
+<footer>
+    <nav>
+        <p><i>&copy; Copyright, Nhu Thai, Emma Byrne, Robyn Mulhall and Marcin Grabicki<li><a href="sitemap.html">Sitemap</a></li></i></p>
+        <ul>
+				<li><a href="https://www.facebook.com"><img src="images/facebook.png" alt="facebook logo" width="50"></a></li>
+				<li><a href="https://www.twitter.com"><img src="images/twitter.png" alt="twitter logo" width="50"></a></li>
+				<li><a href="https://www.instagram.com"><img src="images/instagram.png" alt="instagram logo" width="50"></a></li>
+				<li><a href="https://www.vimeo.com"><img src="images/vimeo.png" alt="vimeo logo" width="50"></a></li>
+			</ul>
+    </nav>
+</footer>
+<!--/footer-->
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}   
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000);
+}
+</script>
+</body>
+</html>

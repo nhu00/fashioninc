@@ -1,0 +1,298 @@
+ <!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spinning Wheel</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/Winwheel.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/flaunt.js"></script>
+	
+</head>
+
+<body>
+<!--header-->
+<header>
+	<img src="images/logo.png" alt="fashion inc"/>
+	<!-- Nav -->
+	<nav class="nav" style="float: right">
+    <ul class="nav-list">
+        <li class="nav-item">
+			<a href="index.html">Home</a>	
+        </li>
+        <li class="nav-item">
+            <a href="wheel.html">Spinning Wheel</a>
+        </li>
+        <li class="nav-item">
+            <a href="overview.html">Style History</a>
+        </li>
+        <li class="nav-item">
+            <a href="interview.html">Stories</a>
+			 <ul class="nav-submenu">
+                <li class="nav-submenu-item">
+                    <a href="twins.html">Alina and Adina</a>
+                </li>
+				<li class="nav-submenu-item">
+                    <a href="alvin.html">Alvin</a>
+                </li>
+                <li class="nav-submenu-item">
+                    <a href="carlos.html">Carlos</a>
+                </li>
+            </ul>
+		</li>
+		<li class="nav-item">
+            <a href="about.html">About Us</a>
+        </li>
+    </ul>
+	</nav>
+<!-- /Nav -->
+</header>
+<!--/header-->
+<main>
+		<h1>Spinning Wheel</h1><br>
+<!--wheel-->
+	<div align="center" id="spinningwheel">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="col3">
+                        <div class="power_controls">
+                            <br />
+                            <br />
+                            <table class="power" cellpadding="10" cellspacing="6">
+                                <tr>
+                                    <th align="center">Power</th>
+                                </tr>
+                                <tr>
+                                    <td width="78" align="center" id="pw3" onClick="powerSelected(3);">High</td>
+                                </tr>
+                                <tr>
+                                    <td align="center" id="pw2" onClick="powerSelected(2);">Med</td>
+                                </tr>
+                                <tr>
+                                    <td align="center" id="pw1" onClick="powerSelected(1);">Low</td>
+                                </tr>
+								<tr>
+									<td align="center"><img id="spin_button" src="images/spin_off.png" alt="Spin" onClick="startSpin();" /></td>
+								</tr>
+                            </table>
+                            <br />
+                        </div>
+                    </td>
+                    <td width="538" height="582" class="the_wheel" align="center" valign="center">
+						<img src="images/arrow.png" alt="arrow">
+                        <canvas id="canvas" width="534" height="534">
+                            <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                        </canvas>
+                    </td>
+            
+					<td>
+					<div class="col3">
+                            <br/>
+                            <br/>
+                        </div>
+					</td>
+				
+				</tr>
+				
+            </table>
+        </div>
+        <script class="wheel">
+            // Need to create the SECONDARY wheel first because on construct the variable which keeps track of the wheel to animate will
+            // be set to the last created wheel, and we want the outer one the primary with the animation etc.
+            let innerWheel = new Winwheel({
+                'numSegments' : 4,
+                'outerRadius' : 145,        // Set the outer radius to make the wheel smaller than the outer wheel.
+                'segments': [
+                    {'fillStyle' : '#ffff80', 'text' : 'Jeans'},
+                    {'fillStyle' : '#66ffb3', 'text' : 'Short'},
+                    {'fillStyle' : '#99ebff', 'text' : 'Skirt'},
+                    {'fillStyle' : '#ff99ff', 'text' : 'Sweatpants'}
+                ]
+            });
+            // Define the outer wheel, we will treat this as the PRIMARY which means it clears the canvas when drawing and also
+            // gets the animaton applied to it. We must callback a function during the animation to move and draw the inner wheel
+            // so the 2 wheels appear as one thing on the canvas.
+            let outerWheel = new Winwheel({
+                'numSegments': 8,
+                'textMargin' : 0,
+                'outerRadius' : 265,
+                'innerRadius' : 145,    // Set inner radius to the size of the inner wheel since the inner part of the wheel
+                'segments': [           //   is being drawn by the inner wheel we don't need to draw there.
+                    {'fillStyle' : '#ffff99', 'text' : 'Blouse'},
+                    {'fillStyle' : '#ffffb3', 'text' : 'Polo Shirt'},
+                    {'fillStyle' : '#80ffbf', 'text' : 'Hoodie'},
+                    {'fillStyle' : '#99ffcc', 'text' : 'T-Shirt'},
+                    {'fillStyle' : '#b3f0ff', 'text' : 'Turtle Neck'},
+                    {'fillStyle' : '#ccf5ff', 'text' : 'Shirt'},
+                    {'fillStyle' : '#ffb3ff', 'text' : 'Sweater'},
+                    {'fillStyle' : '#ffccff', 'text' : 'Jumper'}
+                ],
+                'animation':
+                {
+                  'type': 'spinToStop',                     // Define animation more or less as normal, except for the callbackAfter().
+                  'duration': 5,
+                  'spins': 5,
+                  'easing': 'Power3.easeOut',
+                  'callbackAfter' : drawInnerWheel,     // Call back after each frame of the animation a function we can draw the inner wheel from.
+                  'callbackFinished': alertPrize
+                }
+            });
+            // Call draw on the outerWheel then the inner wheel to ensure that both are rendered on the canvas.
+            outerWheel.draw();
+            innerWheel.draw(false);   // Pass false to stop it clearing the canvas and wiping the outer wheel.
+            // This function is called after the outer wheel has drawn during the animation.
+            function drawInnerWheel()
+            {
+                // Update the rotationAngle of the innnerWheel to match that of the outer wheel - this is a big part of what
+                // links them to appear as one 2-part wheel. Call the draw function passing false so the outer wheel is not wiped.
+                innerWheel.rotationAngle = outerWheel.rotationAngle;
+                innerWheel.draw(false);
+            }
+            // Called when the animation has finished.
+            function alertPrize()
+            {
+                // The the indicated segments from the 2 wheels.
+                let winningInnerSegment = innerWheel.getIndicatedSegment();
+                let winningOuterSegment = outerWheel.getIndicatedSegment();
+                // Alert the combination of prizes won.
+                alert('Our outfit today is: ' + winningInnerSegment.text + ', ' + winningOuterSegment.text);
+                // Set things so power and spin button can be clicked again.
+                wheelSpinning = false;
+                // Remove all colours from the power level indicators.
+                document.getElementById('pw1').className = "";
+                document.getElementById('pw2').className = "";
+                document.getElementById('pw3').className = "";
+            }
+            // ================================================================================================================
+            // FUNCTIONS FOR power controls below (All this is not necessary to actually create and spin a wheel)....
+            // Vars used by the code in this page to do power controls.
+            let wheelPower    = 0;
+            let wheelSpinning = false;
+            // -------------------------------------------------------
+            // Function to handle the onClick on the power buttons.
+            // -------------------------------------------------------
+            function powerSelected(powerLevel)
+            {
+                // Ensure that power can't be changed while wheel is spinning.
+                if (wheelSpinning == false) {
+                    // Reset all to grey incase this is not the first time the user has selected the power.
+                    document.getElementById('pw1').className = "";
+                    document.getElementById('pw2').className = "";
+                    document.getElementById('pw3').className = "";
+                    // Now light up all cells below-and-including the one selected by changing the class.
+                    if (powerLevel >= 1) {
+                        document.getElementById('pw1').className = "pw1";
+                    }
+                    if (powerLevel >= 2) {
+                        document.getElementById('pw2').className = "pw2";
+                    }
+                    if (powerLevel >= 3) {
+                        document.getElementById('pw3').className = "pw3";
+                    }
+                    // Set wheelPower var used when spin button is clicked.
+                    wheelPower = powerLevel;
+                    // Light up the spin button by changing it's source image and adding a clickable class to it.
+                    document.getElementById('spin_button').src = "images/spin_on.png";
+                    document.getElementById('spin_button').className = "clickable";
+                }
+            }
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false) {
+                    // Reset things with inner and outer wheel so spinning will work as expected. Without the reset the
+                    // wheel will probably just move a small amount since the rotationAngle would be close to the targetAngle
+                    // figured out by the animation.
+                    outerWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                    outerWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+                    outerWheel.draw();                // Call draw to render changes to the wheel.
+                    innerWheel.rotationAngle = 0;
+                    innerWheel.draw(false);
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    if (wheelPower == 1) {
+                        outerWheel.animation.spins = 3;     // Number of spins and/or duration can be altered to make the wheel
+                        outerWheel.animation.duration = 7;  // appear to spin faster or slower.
+                    } else if (wheelPower == 2) {
+                        outerWheel.animation.spins = 8;
+                        outerWheel.animation.duration = 7;
+                    } else if (wheelPower == 3) {
+                        outerWheel.animation.spins = 15;
+                    }
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "images/spin_off.png";
+                    document.getElementById('spin_button').className = "";
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    outerWheel.startAnimation();
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+        </script><br>
+	<h2>Style Options</h2>
+	
+<div id="container">
+	<div class="mediarow">
+	<div class="mediacolumn">
+	<h2>Women</h2><br>
+	<p><img src="images/outfits/womansswearshirt.jpg" alt="Women Swearshirt"> <!--https://www.pinterest.ie/pin/181903272427945873/-->
+		<img src="images/outfits/womensjoggers.jpg" alt="Women Joggers"> <!--https://www.pinterest.ie/pin/AbWAOqXgRXvGk-GmCKJSqQH7qNjLo0eJ2qN3MUcO6VnwZN5XOoL-FEA/-->
+	<br>Jumper, Joggers<br><br>
+	
+		<img src="images/outfits/womansblouse.jpg" alt="Women Blouse"> <!--https://www.pinterest.ie/pin/19844054593970192/ -->
+		<img src="images/outfits/womenspolo.jpg" alt="Women Polo" width="260"> <!--https://www.pinterest.ie/pin/529524868685010030/ -->
+		<img src="images/outfits/womensjeans.jpg" alt="Women Jeans"> <!--https://www.pinterest.ie/pin/521713938067414487/ -->
+	<br>Blouse Wrap or Polo Shirt, Mom Jeans<br><br>
+		
+		<img src="images/outfits/womanstshirt.jpg" alt="Women T-Shirt"> <!--https://www.pinterest.ie/pin/828099450212209516/ -->
+		<img src="images/outfits/womanhoodie.jpg" alt="Women Hoodie" width="190"> <!--https://www.pinterest.ie/pin/544020829985081052/ -->
+		<img src="images/outfits/womansshorts.jpg" alt="Women Shorts" width="250"> <!--https://www.pinterest.ie/pin/823032900627825605/-->
+	<br>T-Shirt or Hoodie, Shorts<br><br>
+	
+		<img src="images/outfits/womansshirt.jpg" alt="Women Shirt" width="250"> <!--https://www.pinterest.ie/pin/770748923704752076/-->
+		<img src="images/outfits/womanturtleneck.jpg" alt="Women Turtleneck" width="250"> <!--https://www.pinterest.ie/pin/823032900627953623/-->
+		<img src="images/outfits/skirt.jpg" alt="Women Skirt" width="250"> <!--https://www.pinterest.ie/pin/374221050275409600/-->
+	<br>Shirt or Turtle Neck, Skirt<br>
+	</p>
+	</div>
+	
+	<div class="mediacolumn">
+	<h2>Men</h2><br>
+	<p><img src="images/outfits/mensjumper.jpg" alt="Men Jumper" width="250"> <!--https://www.pinterest.ie/pin/376191375123583803/-->
+		<img src="images/outfits/mensjoggers.jpg" alt="Men Joggers" width="250"> <!--https://www.pinterest.ie/pin/212021094950736198/-->
+	<br>Jumper, Joggers<br><br>
+	
+		<img src="images/outfits/menspolo.jpg" alt="Men Polo"> <!--hhttps://www.pinterest.ie/pin/567383253052131662/-->
+		<img src="images/outfits/mensjeans.jpg" alt="Men Jean" width="187"> <!--https://www.pinterest.ie/pin/370210031849440183/ -->
+	<br>Polo Shirt, Jeans<br><br>
+		
+		<img src="images/outfits/menshoodie.jpg" alt="Men Hoodie"> <!--https://www.pinterest.ie/pin/343118065357708000/ -->
+		<img src="images/outfits/menstshirt.jpg" alt="Men T=Shirt" width="250"> <!--https://www.pinterest.ie/pin/637822365952918836/ -->
+		<img src="images/outfits/mensshorts.jpg" alt="Men Shorts" width="250"> <!--https://www.pinterest.ie/pin/535365474450418168/-->
+	<br>Hoodie or T-Shirt, Shorts<br>
+	</p>
+	</div>
+	</div>
+</div>
+	
+</main>
+<!--footer-->
+<footer>
+    <nav>
+        <p><i>&copy; Copyright, Nhu Thai, Emma Byrne, Robyn Mulhall and Marcin Grabicki<li><a href="sitemap.html">Sitemap</a></li></i></p>
+        <ul>
+				<li><a href="https://www.facebook.com"><img src="images/facebook.png" alt="facebook logo" width="50"></a></li>
+				<li><a href="https://www.twitter.com"><img src="images/twitter.png" alt="twitter logo" width="50"></a></li>
+				<li><a href="https://www.instagram.com"><img src="images/instagram.png" alt="instagram logo" width="50"></a></li>
+				<li><a href="https://www.vimeo.com"><img src="images/vimeo.png" alt="vimeo logo" width="50"></a></li>
+			</ul>
+    </nav>
+</footer>
+<!--/footer-->
+</body>
+</html>

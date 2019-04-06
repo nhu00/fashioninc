@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Fashion Inc</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/flaunt.js"></script>
+</head>
+
+<body>
+<!--header-->
+<header>
+	<img src="images/logo.png" alt="fashion inc"/>
+	<!-- Nav -->
+	<nav class="nav" style="float: right">
+    <ul class="nav-list">
+        <li class="nav-item">
+			<a href="index.html">Home</a>	
+        </li>
+        <li class="nav-item">
+            <a href="wheel.html">Spinning Wheel</a>
+        </li>
+        <li class="nav-item">
+            <a href="overview.html">Style History</a>
+        </li>
+        <li class="nav-item">
+            <a href="interview.html">Stories</a>
+			 <ul class="nav-submenu">
+                <li class="nav-submenu-item">
+                    <a href="twins.html">Alina and Adina</a>
+                </li>
+				<li class="nav-submenu-item">
+                    <a href="alvin.html">Alvin</a>
+                </li>
+                <li class="nav-submenu-item">
+                    <a href="carlos.html">Carlos</a>
+                </li>
+            </ul>
+		</li>
+		<li class="nav-item">
+            <a href="about.html">About Us</a>
+        </li>
+    </ul>
+	</nav>
+<!-- /Nav -->
+</header>
+<!--/header-->
+<!--slideshow-->
+	<img class="mySlides w3-animate-fading" src="images/img1.JPG" alt="carlos" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/skate3.JPG" alt="skate park" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/IMG_0958.JPG" alt="carlos" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/img2.jpg" alt="alvin" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/temple.jpg" alt="temple bar" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/IMG_5018.jpg" alt="alvin" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/img3.jpg" alt="the twins" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/stephens-green.jpg" alt="stephen's green" style="width: 100%">
+	<img class="mySlides w3-animate-fading" src="images/IMG_0867.JPG" alt="the twins" style="width: 100%">
+<!--/slideshow-->
+	
+<!--row-->
+<div class="row">
+    <a href="wheel.html"><div class="col4">
+        <img src="images/spinning-wheel.png" alt="Roulette by Smalllike from the Noun Project"/> 
+		<h1>Spinning Wheel</h1><br>
+		<p>A little game we decided to add in for our website. This Spinning Wheel will choose your outfit, that's if you want to wear something different or haven't worn before. </p>
+    </div></a>
+    <!--/column-->
+    <!--column-->
+    <a href="overview.html"><div class="col4">
+        <img src="images/history.png" alt="Reading by Dinosoft Labs from the Noun Project"/>
+		<h1>Style History</h1><br>
+        <p>If you are interested in the different fashion style throughout the decade. Click on this link! This link will show the different trends of the decades.</p>
+    </div></a>
+	<a href="interview.html"><div class="col4">
+		<img src="images/interview.png" alt="Video by Dinosoft Labs from the Noun Project"/>
+        <h1>Stories</h1><br>
+        <p>We interview four different people on the street, asking them what inspires their fashion style and is there any historical significance of their outfit?</p>
+    </div></a>
+	<a href="about.html"><div class="col4">
+		<img src="images/about.png" alt="Information by Aneeque Ahmed from the Noun Project"/>
+        <h1>About Us</h1><br>
+        <p>There are four people managing this blog, Nhu Thai, Emma Byrne, Robyn Mulhall and Marcin Grabicki. We talk about our own fashion styles.</p>
+	</div></a>
+    <!--/column-->
+</div>
+<!--/row-->
+	
+<!--footer-->
+<footer>
+    <nav>
+        <p><i>&copy; Copyright, Nhu Thai, Emma Byrne, Robyn Mulhall and Marcin Grabicki<li><a href="sitemap.html">Sitemap</a></li></i></p>
+        <ul>
+				<li><a href="https://www.facebook.com"><img src="images/facebook.png" alt="facebook logo" width="50"></a></li>
+				<li><a href="https://www.twitter.com"><img src="images/twitter.png" alt="twitter logo" width="50"></a></li>
+				<li><a href="https://www.instagram.com"><img src="images/instagram.png" alt="instagram logo" width="50"></a></li>
+				<li><a href="https://www.vimeo.com"><img src="images/vimeo.png" alt="vimeo logo" width="50"></a></li>
+			</ul>
+    </nav>
+</footer>
+<!--/footer-->
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}   
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000);
+}
+</script>
+
+
+</body>
+</html>
