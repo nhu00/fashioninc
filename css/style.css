@@ -1,0 +1,490 @@
+@charset "UTF-8";
+/* CSS Document plantagenet cherokee*/
+
+/* Global */
+
+* {
+	margin: 0; 
+	padding: 0;
+	box-sizing: border-box;
+}
+
+img {max-width: 100%;}
+
+/* Typography */
+
+body {
+	font-size: calc(0.6em + 0.6vw);
+	text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 0; 
+	padding: 0;
+	line-height: 1.4em;
+	color: #3D3D3B;
+}
+h1 {
+	font-size: calc(3em + 3vw);
+	font-weight: 10;
+	color: black;
+	padding: 9% 0 5% 0;
+	font-family: 'Harvest Barn PERSONAL USE ONLY';
+	}
+  
+h2 {
+	font-size: calc(1em + 1vw);
+	padding: 1%;
+	}
+a {
+	color: black;
+}
+/* Header */
+
+header {
+	margin: 0 auto;
+}
+
+header img {
+	display: block;
+	margin: 0% auto;
+	float: left;
+	}
+
+/* Content*/
+#about img {
+	float: left;
+}
+.row {
+	width: 100%;
+	margin: 0 auto;
+	padding: 2% 0 0 0;
+}
+.col4{
+	width: 25%;
+	float: left;
+	padding: 0 1% 1% 1%;
+}
+.col4:hover {
+	background-color: #3fb0ac;
+	color: #ffffff;
+	border-radius: 2%;
+}
+.col4:last-child{
+	padding: 1%;
+}
+/* Footer */
+
+footer {
+	background-color: #eeebe6;
+	clear: both;
+	}
+	
+footer nav ul {
+	padding: 1%;
+	}
+	
+footer nav ul li {
+	display: inline;
+	padding: 1%;
+	}
+footer nav li {
+	list-style-type: none;
+	}
+footer nav li a{
+	text-decoration: underline;
+	}
+footer nav li a:hover {
+	text-decoration: underline;
+	color: blue;
+	}
+a:visited {
+	color: black;
+}
+
+/*style history page */
+#container {
+	width: 95%;
+	margin: auto;
+	display: inline-block;
+}
+
+.mediacolumn {
+	float: left;
+    width: 46%;
+    padding: 16px;
+	margin: 5px;
+}
+
+/*sitemap*/
+#sitemap ul {
+	list-style-type: disc;
+	margin: 0 0 0 110px;
+	text-align: left;
+}
+#sitemap ul li a{
+	text-decoration: none;
+}
+#sitemap ul li a:hover {
+	text-decoration: underline;
+	color: blue;
+}
+
+/*wheel*/
+.col3 {
+	width: 20%;
+}
+/* Sets the background image for the wheel */
+td.the_wheel
+{
+    background-position: center;
+    background-repeat: none;
+}
+
+div.power_controls
+{
+    margin-right:70px;
+}
+
+div.html5_logo
+{
+    margin-left:70px;
+}
+
+/* Styles for the power selection controls */
+table.power
+{
+    background-color: #cccccc;
+    cursor: pointer;
+    border:1px solid #333333;
+}
+
+table.power th
+{
+    background-color: white;
+    cursor: default;
+}
+
+td.pw1
+{
+    background-color: #6fe8f0;
+}
+
+td.pw2
+{
+    background-color: #86ef6f;
+}
+
+td.pw3
+{
+    background-color: #ef6f6f;
+}
+
+/* Style applied to the spin button once a power has been selected */
+.clickable
+{
+    cursor: pointer;
+}
+
+/* Other misc styles */
+.margin_bottom
+{
+    margin-bottom: 5px;
+}
+
+
+/*story*/
+.slideshow {
+  position: relative;
+}
+
+.image {
+  opacity: 2;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle, .middle2, .middle3 {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.slideshow:hover .image {
+  opacity: 0.7;
+}
+
+.slideshow:hover .middle {
+  opacity: 1;
+}
+
+.middle .text {
+  background-color: rgba(0,0,0,1);
+  color: white;
+  font-size: 150%;
+  padding: 16px 32px;
+}
+.middle2 .text2 {
+  background-color: rgba(0,0,0,1);
+  color: white;
+  font-size: 150%;
+  padding: 16px 32px;
+}
+.middle3 .text3 {
+  background-color: rgba(0,0,0,1);
+  color: white;
+  font-size: 150%;
+  padding: 16px 32px;
+}
+
+aside {
+	width: 400px;
+	margin-left: 10%;
+	padding: 15px;
+	clear: left;
+	float: left;
+	text-align: justify;
+	position: relative;
+}
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/*------------------------------------*\
+    nav
+\*------------------------------------*/
+.nav {
+	position:relative;
+	display:inline-block;
+	padding: 2% 0 0 0;
+}
+.nav-list {
+	text-align:left;
+}
+.nav-item {
+	float:left;
+	*display:inline;
+	zoom:1;
+	position:relative;
+	list-style-type: none;
+}
+.nav-item a {
+	display:block;
+	padding: 20px;
+	text-decoration: none;
+	color: #3D3D3B;
+}
+.nav-item > a:hover {
+	background-color: #3fb0ac;
+	color: #ffffff;
+}
+.nav-item:hover .nav-submenu {
+	display:block;
+}
+/* Navigation submenu */
+.nav-submenu {
+	display:none;
+	position:absolute;
+	left:-40px;
+	width:180px;
+	list-style-type: none;
+	z-index: 10;
+}
+.nav-submenu-item a {
+	background-color: #eeebe6;
+	color: #3D3D3B;
+	border-bottom:1px solid #fff;
+	display:block;
+	padding:15px;
+	font-size: calc(0.5em + 0.5vw);
+}
+.nav-submenu-item a:hover {
+	background:#3D3D3B;
+	color: #fff;
+}
+/* Mobile navigation */
+.nav-mobile {
+	display:none; /* Hide from browsers that don't support media queries */
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	right:0;
+	background:#3D3D3B url(../images/nav.svg) no-repeat center center;
+	background-size:18px;
+	height:50px;
+	width:50px;
+}
+/* Mobile navigation, clickable area for revealing <ul> */
+.nav-click {
+	position:absolute;
+	top:0;
+	right:0;
+	display:none;
+	height:49px;
+	width:50px;
+	cursor:pointer;
+}
+.nav-click i {
+	display:block;
+	height:48px;
+	width:48px;
+	background:url(../images/drop.svg) no-repeat center center;
+	background-size:20px;
+}
+.nav-click:hover {
+	background:#3D3D3B;
+}
+.nav-rotate {
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-ms-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	transform:rotate(180deg);
+}
+
+/*------------------------------------*\
+    Media Queries
+\*------------------------------------*/
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+	
+	/* Navigation */
+	
+	.nav-mobile {
+		display:block;
+	}
+	.nav {
+		width:100%;
+		padding: 50px 0 0 0;
+	}
+	.nav-list {
+		display:none;
+	}
+	.nav-item {
+		width:100%;
+		float:none;
+	}
+	.nav-item > a {
+		padding:15px;
+		background:#3fb0ac;
+		color:#fff;
+		font-size: calc(1em + 1vw);
+	}
+	.nav-item > a:hover {
+		background:#3D3D3B;
+	}
+	.nav-click {
+		display:block;
+	}
+	.nav-mobile-open {
+		-webkit-border-radius:5px 5px 0 0;
+		-moz-border-radius:5px 5px 0 0;
+		border-radius:5px 5px 0 0;
+	}
+	.nav-item:hover .nav-submenu {
+		display:none;
+	}
+	.nav-submenu {
+		position:static;
+		width:100%;
+		margin-left: -40px;
+	}
+	.nav-submenu a {
+		font-size: calc(0.9em + 0.9vw);
+	}
+	
+	/*typography*/
+	
+	body {
+	font-size: calc(0.9em + 0.9vw);
+	}
+	
+	/* Content */
+
+	
+}
+/* * * * * * Smartphone & Small Tablet*/
+@media (min-width:320px) and (max-width: 736px){ 
+	header, .row {
+		width: 90%;
+		clear: both;
+		padding: none;
+	}
+	.column, .col4 {
+		width: 100%;
+	}
+	.column img, .col4 img {
+		width: 50%;
+		height: 50%;
+	}
+	#chart, #chart2, #chart3 {
+	display: inline-block;
+}
+	nav ul {
+		display: none;
+		height: auto;
+	}
+	
+	nav ul li {
+		display: block;
+		padding: 5px 0;
+		border-top: dotted 1px #2b2b2b;
+	}
+	
+	nav a#pull {
+		display: block;
+		color: #2b2b2b;
+		text-decoration: none;
+		text-transform: uppercase;
+		background-color: #f1f1f1;
+		border-top: dotted 1px #2b2b2b;
+		border-bottom: dotted 1px #2b2b2b;
+		height: 20px;
+		padding: 10px;
+		text-align: left;
+		position: relative;
+		margin: 0 0 10px 0;
+	}
+	
+	nav a#pull:after {
+		content:"";
+		background: url(../images/nav-icon.png) no-repeat;
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		position: absolute;
+		right: 25px;
+		top: 10px;
+	}
+}
+
+
+/* * * * * * Tablet */
+@media (min-width:768px) and (max-width: 1024px){ 
+	header, row {
+		width: 90%;
+	}
+	
+	.column img, .col4 img {
+		display: none;
+	}
+}
+
+@font-face {
+    font-family: 'Harvest Barn PERSONAL USE ONLY';
+    src: url('../fonts/Harvest Barn PERSONAL USE ONLY.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
